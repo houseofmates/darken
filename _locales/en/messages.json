@@ -1,0 +1,239 @@
+{
+  "extension_description": {
+    "message": "dark mode for every website. take care of your eyes, use dark theme for night and daily browsing."
+  },
+  "loading_please_wait": {
+    "message": "loading, please wait"
+  },
+  "on": {
+    "message": "on"
+  },
+  "off": {
+    "message": "off"
+  },
+  "toggle_current_site": {
+    "message": "toggle current site"
+  },
+  "setup_hotkey_toggle_site": {
+    "message": "setup current site\ntoggle hotkey"
+  },
+  "toggle_extension": {
+    "message": "toggle extension"
+  },
+  "setup_hotkey_toggle_extension": {
+    "message": "setup extension\ntoggle hotkey"
+  },
+  "automation": {
+    "message": "automation"
+  },
+  "set_active_hours": {
+    "message": "set active hours"
+  },
+  "set_location": {
+    "message": "activate after sunset at location"
+  },
+  "longitude": {
+    "message": "longitude"
+  },
+  "latitude": {
+    "message": "latitude"
+  },
+  "page_protected": {
+    "message": "this page is protected\nby browser"
+  },
+  "local_files_forbidden": {
+    "message": "not allowed to access\nlocal files"
+  },
+  "page_in_dark_list": {
+    "message": "this site is in global\ndark list"
+  },
+  "system_dark_mode": {
+    "message": "use system color scheme"
+  },
+  "system_dark_mode_description": {
+    "message": "activate when system dark mode is on"
+  },
+  "system_dark_mode_chromium_warning": {
+    "message": "this option might not work due to\na bug in your browser"
+  },
+  "filter": {
+    "message": "filter"
+  },
+  "mode": {
+    "message": "mode"
+  },
+  "dark": {
+    "message": "dark"
+  },
+  "light": {
+    "message": "light"
+  },
+  "brightness": {
+    "message": "brightness"
+  },
+  "contrast": {
+    "message": "contrast"
+  },
+  "grayscale": {
+    "message": "grayscale"
+  },
+  "sepia": {
+    "message": "sepia"
+  },
+  "only_for": {
+    "message": "only for"
+  },
+  "only_for_description": {
+    "message": "apply settings to current website only"
+  },
+  "site_list": {
+    "message": "site list"
+  },
+  "invert_listed_only": {
+    "message": "invert listed only"
+  },
+  "not_invert_listed": {
+    "message": "not invert listed"
+  },
+  "add_site_to_list": {
+    "message": "add site to list"
+  },
+  "setup_add_site_hotkey": {
+    "message": "setup a hotkey for adding site"
+  },
+  "more": {
+    "message": "more"
+  },
+  "select_font": {
+    "message": "select a font"
+  },
+  "text_stroke": {
+    "message": "text stroke"
+  },
+  "try_experimental_theme_engines": {
+    "message": "try out **experimental** theme engines:\n**filter+** preserves colors saturation, uses gpu\n**static theme** generates a simple fast theme\n**dynamic theme** analyzes colors and images"
+  },
+  "engine_filter": {
+    "message": "filter"
+  },
+  "engine_filter_plus": {
+    "message": "filter+"
+  },
+  "engine_static": {
+    "message": "static"
+  },
+  "engine_dynamic": {
+    "message": "dynamic"
+  },
+  "theme_generation_mode": {
+    "message": "theme generation mode"
+  },
+  "custom_browser_theme_on": {
+    "message": "custom"
+  },
+  "custom_browser_theme_off": {
+    "message": "default"
+  },
+  "change_browser_theme": {
+    "message": "change the browser theme"
+  },
+  "privacy": {
+    "message": "privacy"
+  },
+  "help": {
+    "message": "help"
+  },
+  "donate": {
+    "message": "donate"
+  },
+  "we_celebrate_10_years": {
+    "message": "dark reader celebrates 10 years.\nplease support our work."
+  },
+  "pay_for_using": {
+    "message": "pay for using dark reader"
+  },
+  "news": {
+    "message": "news"
+  },
+  "read_more": {
+    "message": "read more"
+  },
+  "open_dev_tools": {
+    "message": "dev tools"
+  },
+  "mobile": {
+    "message": "mobile"
+  },
+  "learn_more": {
+    "message": "learn more"
+  },
+  "mobile_text": {
+    "message": "reduce eye strain when reading on your phone or tablet.\nsimply scan the qr code to install."
+  },
+  "all_settings": {
+    "message": "all settings"
+  },
+  "version": {
+    "message": "version"
+  },
+  "configure_automation": {
+    "message": "configure automation"
+  },
+  "auto_night_time": {
+    "message": "auto (nighttime)"
+  },
+  "auto_day_time": {
+    "message": "auto (daytime)"
+  },
+  "auto_night_at_location": {
+    "message": "auto (night at location)"
+  },
+  "auto_day_at_location": {
+    "message": "auto (day at location)"
+  },
+  "auto_system_is_dark": {
+    "message": "auto (the system is dark)"
+  },
+  "auto_system_is_light": {
+    "message": "auto (the system is light)"
+  },
+  "click_to_set_shortcut": {
+    "message": "click to set the shortcut"
+  },
+  "extension_toggle_shortcut": {
+    "message": "extension on/off keyboard shortcut"
+  },
+  "configure_site_toggle": {
+    "message": "configure website toggling"
+  },
+  "site_toggle": {
+    "message": "site toggling"
+  },
+  "enabled_by_default": {
+    "message": "enabled by default"
+  },
+  "enable_for_all_sites_by_default": {
+    "message": "enabled for all websites by default"
+  },
+  "detect_dark_theme": {
+    "message": "detect dark theme"
+  },
+  "detect_website_dark_theme": {
+    "message": "detect the website's dark theme"
+  },
+  "dark_theme_detected": {
+    "message": "dark theme detected"
+  },
+  "website_toggle_shortcut": {
+    "message": "website toggle keyboard shortcut"
+  },
+  "support_out_work": {
+    "message": "support our work"
+  },
+  "mobile_link": {
+    "message": "mobile dark reader is available. learn more"
+  },
+  "store_listing": {
+    "message": "this eye-care extension enables night mode by creating dark themes for websites on the fly. dark reader inverts bright colors to make web pages high contrast and easier to read.\n\nadjust brightness, contrast, the sepia filter, font preferences. enable dark mode on every web page or give websites a sepia tone. enable or disable dark reader for specific websites, automatically sync with system dark mode, or detect already dark websites and leave them unchanged.\n\ndark reader plus unlocks a premium user interface with customizable color themes for a fee.\n\nthis is the original dark reader extension. since 2014, we continuously evolve alongside modern web technologies to deliver fast and reliable dark mode support for people sensitive to bright light.\n\nby installing the extension you agree to these terms of use https://darkreader.org/terms/\n\nplease disable similar extensions to avoid conflicts. enjoy browsing!"
+  }
+}

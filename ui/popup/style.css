@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+:root {
+  --bg: #050505;
+  --text: #ffffff;
+  --accent: #f6b012;
+  --info: #3c9fdd;
+  --surface: #0a0a0a;
+  --border: #1a1a1a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Varela Round', sans-serif;
+  margin: 0;
+  padding: 16px;
+  text-transform: lowercase;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+a { color: var(--info); }
+
+button, input[type="submit"], .btn {
+  background: var(--accent);
+  color: #050505;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 600;
+  padding: 8px 16px;
+  text-transform: lowercase;
+  transition: opacity 0.15s;
+}
+
+button:hover, input[type="submit"]:hover { opacity: 0.85; }
+button:active, input[type="submit"]:active { transform: scale(0.98); }
+
+input[type="text"], input[type="url"], input[type="number"], input[type="search"], textarea, select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: 'Varela Round', sans-serif;
+  padding: 8px 12px;
+  outline: none;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* toggle switch */
+.toggle-track {
+  background: #2a2a2a;
+  border-radius: 20px;
+  height: 40px;
+  position: relative;
+  width: 72px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-track::after {
+  background: #555;
+  border-radius: 18px;
+  content: "";
+  height: 32px;
+  left: 4px;
+  position: absolute;
+  top: 4px;
+  width: 32px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input[type="checkbox"]:checked + .toggle-track { background: #1a3a1a; }
+input[type="checkbox"]:checked + .toggle-track::after {
+  background: var(--accent);
+  transform: translateX(32px);
+}
