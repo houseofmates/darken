@@ -6,7 +6,7 @@
   "description": "darken.",
   "default_locale": "en",
   "browser_action": {
-    "default_title": "Dark Reader",
+    "default_title": "darken",
     "default_icon": {
       "19": "icons/dr_active_19.png",
       "38": "icons/dr_active_38.png"
@@ -83,5 +83,5 @@
     },
     "gecko_android": {}
   },
-  "homepage_url": "https://github.com/darkreader/darkreader"
+  "homepage_url": "https://github.com/darken/darken"
 }

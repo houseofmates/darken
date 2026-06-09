@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    const STORAGE_KEY_WAS_ENABLED_FOR_HOST = "__darkreader__wasEnabledForHost";
+    const STORAGE_KEY_WAS_ENABLED_FOR_HOST = "__darken__wasEnabledForHost";
     function wasEnabledForHost() {
         try {
             const value = sessionStorage.getItem(
@@ -21,8 +21,8 @@
         document.documentElement instanceof HTMLHtmlElement &&
         matchMedia("(prefers-color-scheme: dark)").matches &&
         wasEnabledForHost() !== false &&
-        !document.querySelector(".darkreader--fallback") &&
-        !document.querySelector(".darkreader") &&
+        !document.querySelector(".darken--fallback") &&
+        !document.querySelector(".darken") &&
         !(window !== top)
     ) {
         const css = [
@@ -40,8 +40,8 @@
             "}"
         ].join("\n");
         const fallback = document.createElement("style");
-        fallback.classList.add("darkreader");
-        fallback.classList.add("darkreader--fallback");
+        fallback.classList.add("darken");
+        fallback.classList.add("darken--fallback");
         fallback.media = "screen";
         fallback.textContent = css;
         if (document.head) {
@@ -79,7 +79,7 @@
                                 ? void 0
                                 : _a.classList) === null || _b === void 0
                             ? void 0
-                            : _b.contains("darkreader")
+                            : _b.contains("darken")
                     ) {
                         return [];
                     }

@@ -947,12 +947,12 @@
         return code;
     }
 
-    const BLOG_URL = "https://darkreader.org/blog/";
-    const NEWS_URL = "https://darkreader.org/blog/posts.json";
-    const UNINSTALL_URL = "https://darkreader.org/goodluck/";
-    const HELP_URL = "https://darkreader.org/help";
+    const BLOG_URL = "https://darken.org/blog/";
+    const NEWS_URL = "https://darken.org/blog/posts.json";
+    const UNINSTALL_URL = "https://darken.org/goodluck/";
+    const HELP_URL = "https://darken.org/help";
     const CONFIG_URL_BASE =
-        "https://raw.githubusercontent.com/darkreader/darkreader/main/src/config";
+        "https://raw.githubusercontent.com/darken/darken/main/src/config";
     const helpLocales = [
         "be",
         "cs",
@@ -4970,7 +4970,7 @@
                                 ? void 0
                                 : _d.url) === null || _e === void 0
                             ? void 0
-                            : _e.startsWith("https://darkreader.org/");
+                            : _e.startsWith("https://darken.org/");
                     IconManager.setIcon({tabId, isActive});
                 }
             }
@@ -5799,7 +5799,7 @@
             registered = {parsed};
             registeredColors.set(hex, registered);
         }
-        const variable = `--darkreader-${type}-${hex.replace("#", "")}`;
+        const variable = `--darken-${type}-${hex.replace("#", "")}`;
         registered[type] = {variable, value};
         if ((_a = void 0) === null || _a === void 0 ? void 0 : _a.style) {
             (void 0).style.setProperty(variable, value);
@@ -6373,8 +6373,8 @@
                 _a.registeredContextMenus = false;
                 chrome.contextMenus.create(
                     {
-                        id: "DarkReader-top",
-                        title: "Dark Reader"
+                        id: "darken-top",
+                        title: "darken"
                     },
                     () => {
                         if (chrome.runtime.lastError) {
@@ -6390,17 +6390,17 @@
                         );
                         chrome.contextMenus.create({
                             id: "toggle",
-                            parentId: "DarkReader-top",
+                            parentId: "darken-top",
                             title: msgToggle || "Toggle everywhere"
                         });
                         chrome.contextMenus.create({
                             id: "addSite",
-                            parentId: "DarkReader-top",
+                            parentId: "darken-top",
                             title: msgAddSite || "Toggle for current site"
                         });
                         chrome.contextMenus.create({
                             id: "switchEngine",
-                            parentId: "DarkReader-top",
+                            parentId: "darken-top",
                             title: msgSwitchEngine || "Switch engine"
                         });
                         _a.registeredContextMenus = true;
@@ -6925,7 +6925,7 @@
     const welcome = `  /''''\\
  (0)==(0)
 /__||||__\\
-Welcome to Dark Reader!`;
+Welcome to darken!`;
     console.log(welcome);
     {
         chrome.runtime.onInstalled.addListener(({reason}) => {

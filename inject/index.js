@@ -192,10 +192,10 @@
         return Math.floor(Math.random() * 2 ** 55).toString(36);
     }
 
-    const STORAGE_KEY_WAS_ENABLED_FOR_HOST = "__darkreader__wasEnabledForHost";
-    const STORAGE_KEY_IMAGE_DETAILS_LIST = "__darkreader__imageDetails_v2_list";
-    const STORAGE_KEY_IMAGE_DETAILS_PREFIX = "__darkreader__imageDetails_v2_";
-    const STORAGE_KEY_CSS_FETCH_PREFIX = "__darkreader__cssFetch_";
+    const STORAGE_KEY_WAS_ENABLED_FOR_HOST = "__darken__wasEnabledForHost";
+    const STORAGE_KEY_IMAGE_DETAILS_LIST = "__darken__imageDetails_v2_list";
+    const STORAGE_KEY_IMAGE_DETAILS_PREFIX = "__darken__imageDetails_v2_";
+    const STORAGE_KEY_CSS_FETCH_PREFIX = "__darken__cssFetch_";
     function writeEnabledForHost(value) {
         try {
             sessionStorage.setItem(
@@ -1212,7 +1212,7 @@
                 var _a;
                 return (_a = s.ownerNode) === null || _a === void 0
                     ? void 0
-                    : _a.classList.contains("darkreader");
+                    : _a.classList.contains("darken");
             })
             .concat(
                 Array.isArray(document.adoptedStyleSheets)
@@ -1226,7 +1226,7 @@
                                   ? void 0
                                   : _b.selectorText) === null || _c === void 0
                               ? void 0
-                              : _c.startsWith("#__darkreader");
+                              : _c.startsWith("#__darken");
                       })
                     : []
             );
@@ -1251,7 +1251,7 @@
                 style.ownerNode &&
                 !(
                     style.ownerNode.classList &&
-                    style.ownerNode.classList.contains("darkreader")
+                    style.ownerNode.classList.contains("darken")
                 )
             ) {
                 return true;
@@ -2689,7 +2689,7 @@
             registered = {parsed};
             registeredColors.set(hex, registered);
         }
-        const variable = `--darkreader-${type}-${hex.replace("#", "")}`;
+        const variable = `--darken-${type}-${hex.replace("#", "")}`;
         registered[type] = {variable, value};
         if (
             (_a =
@@ -3176,13 +3176,13 @@
         var _a, _b;
         if (
             (_b =
-                (_a = window.DarkReader) === null || _a === void 0
+                (_a = window.darken) === null || _a === void 0
                     ? void 0
                     : _a.Plugins) === null || _b === void 0
                 ? void 0
                 : _b.fetch
         ) {
-            return window.DarkReader.Plugins.fetch(request);
+            return window.darken.Plugins.fetch(request);
         }
         const parsedURL = new URL(request.url);
         if (
@@ -3505,7 +3505,7 @@
     let blobURLCheckRequested = false;
     const blobURLCheckAwaiters = [];
     document.addEventListener(
-        "__darkreader__inlineScriptsAllowed",
+        "__darken__inlineScriptsAllowed",
         () => (canUseProxy = true),
         {once: true}
     );
@@ -3521,7 +3521,7 @@
         blobURLCheckRequested = true;
         await new Promise((resolve) => {
             document.addEventListener(
-                "__darkreader__blobURLCheckResponse",
+                "__darken__blobURLCheckResponse",
                 (e) => {
                     isBlobURLSupported = e.detail.blobURLAllowed;
                     resolve();
@@ -3531,7 +3531,7 @@
                 {once: true}
             );
             document.dispatchEvent(
-                new CustomEvent("__darkreader__blobURLCheckRequest")
+                new CustomEvent("__darken__blobURLCheckRequest")
             );
         });
     }
@@ -3557,11 +3557,11 @@
         const svg = [
             `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ${size}>`,
             "<defs>",
-            '<filter id="darkreader-image-filter">',
+            '<filter id="darken-image-filter">',
             `<feColorMatrix type="matrix" values="${matrix}" />`,
             "</filter>",
             "</defs>",
-            `<image width="${width}" height="${height}" filter="url(#darkreader-image-filter)" xlink:href="${dataURL}" />`,
+            `<image width="${width}" height="${height}" filter="url(#darken-image-filter)" xlink:href="${dataURL}" />`,
             "</svg>"
         ].join("");
         if (!isBlobURLSupported) {
@@ -5123,16 +5123,16 @@
         });
     }
     function wrapBgColorVariableName(name) {
-        return `--darkreader-bg${name}`;
+        return `--darken-bg${name}`;
     }
     function wrapTextColorVariableName(name) {
-        return `--darkreader-text${name}`;
+        return `--darken-text${name}`;
     }
     function wrapBorderColorVariableName(name) {
-        return `--darkreader-border${name}`;
+        return `--darken-border${name}`;
     }
     function wrapBgImgVariableName(name) {
-        return `--darkreader-bgimg${name}`;
+        return `--darken-bgimg${name}`;
     }
     function isVariable(property) {
         return property.startsWith("--");
@@ -5173,10 +5173,10 @@
                     fallback.startsWith("rgba(") ||
                     fallback.startsWith("hsl(") ||
                     fallback.startsWith("hsla(") ||
-                    fallback.startsWith("var(--darkreader-bg--") ||
-                    fallback.startsWith("var(--darkreader-background-") ||
+                    fallback.startsWith("var(--darken-bg--") ||
+                    fallback.startsWith("var(--darken-background-") ||
                     (hasDoubleNestedBrackets &&
-                        fallback.includes("var(--darkreader-background-"))
+                        fallback.includes("var(--darken-background-"))
                 );
             }
             return fallback.match(/^(#[0-9a-f]+)|([a-z]+)$/i);
@@ -5376,7 +5376,7 @@
                 const viewTransitionSelector =
                     selector.includes("::view-transition-");
                 if (viewTransitionSelector) {
-                    selectorText = ".darkreader-unsupported-selector";
+                    selectorText = ".darken-unsupported-selector";
                 }
                 let ruleText = `${selectorText} {`;
                 for (const dec of declarations) {
@@ -5638,7 +5638,7 @@
     }
 
     document.addEventListener(
-        "__darkreader__inlineScriptsAllowed",
+        "__darken__inlineScriptsAllowed",
         () => true,
         {once: true}
     );
@@ -5812,12 +5812,12 @@
             return;
         }
         let container = document.body.querySelector(
-            ".darkreader-style-container"
+            ".darken-style-container"
         );
         if (!container) {
             container = document.createElement("div");
-            container.classList.add("darkreader");
-            container.classList.add("darkreader-style-container");
+            container.classList.add("darken");
+            container.classList.add("darken-style-container");
             container.style.display = "none";
             document.body.append(container);
             containerObserver = new MutationObserver(() => {
@@ -5827,7 +5827,7 @@
                         : container.nextElementSibling) != null
                 ) {
                     container
-                        .querySelectorAll(".darkreader--sync")
+                        .querySelectorAll(".darken--sync")
                         .forEach((el) => {
                             if (el.sheet.cssRules.length > 0) {
                                 let cssText = "";
@@ -5853,7 +5853,7 @@
         containerObserver === null || containerObserver === void 0
             ? void 0
             : containerObserver.disconnect();
-        (_a = document.querySelector(".darkreader-style-container")) === null ||
+        (_a = document.querySelector(".darken-style-container")) === null ||
         _a === void 0
             ? void 0
             : _a.remove();
@@ -5861,101 +5861,101 @@
 
     const overrides = {
         "background-color": {
-            customProp: "--darkreader-inline-bgcolor",
+            customProp: "--darken-inline-bgcolor",
             cssProp: "background-color",
-            dataAttr: "data-darkreader-inline-bgcolor"
+            dataAttr: "data-darken-inline-bgcolor"
         },
         "background-image": {
-            customProp: "--darkreader-inline-bgimage",
+            customProp: "--darken-inline-bgimage",
             cssProp: "background-image",
-            dataAttr: "data-darkreader-inline-bgimage"
+            dataAttr: "data-darken-inline-bgimage"
         },
         "border-color": {
-            customProp: "--darkreader-inline-border",
+            customProp: "--darken-inline-border",
             cssProp: "border-color",
-            dataAttr: "data-darkreader-inline-border"
+            dataAttr: "data-darken-inline-border"
         },
         "border-bottom-color": {
-            customProp: "--darkreader-inline-border-bottom",
+            customProp: "--darken-inline-border-bottom",
             cssProp: "border-bottom-color",
-            dataAttr: "data-darkreader-inline-border-bottom"
+            dataAttr: "data-darken-inline-border-bottom"
         },
         "border-left-color": {
-            customProp: "--darkreader-inline-border-left",
+            customProp: "--darken-inline-border-left",
             cssProp: "border-left-color",
-            dataAttr: "data-darkreader-inline-border-left"
+            dataAttr: "data-darken-inline-border-left"
         },
         "border-right-color": {
-            customProp: "--darkreader-inline-border-right",
+            customProp: "--darken-inline-border-right",
             cssProp: "border-right-color",
-            dataAttr: "data-darkreader-inline-border-right"
+            dataAttr: "data-darken-inline-border-right"
         },
         "border-top-color": {
-            customProp: "--darkreader-inline-border-top",
+            customProp: "--darken-inline-border-top",
             cssProp: "border-top-color",
-            dataAttr: "data-darkreader-inline-border-top"
+            dataAttr: "data-darken-inline-border-top"
         },
         "box-shadow": {
-            customProp: "--darkreader-inline-boxshadow",
+            customProp: "--darken-inline-boxshadow",
             cssProp: "box-shadow",
-            dataAttr: "data-darkreader-inline-boxshadow"
+            dataAttr: "data-darken-inline-boxshadow"
         },
         "color": {
-            customProp: "--darkreader-inline-color",
+            customProp: "--darken-inline-color",
             cssProp: "color",
-            dataAttr: "data-darkreader-inline-color"
+            dataAttr: "data-darken-inline-color"
         },
         "fill": {
-            customProp: "--darkreader-inline-fill",
+            customProp: "--darken-inline-fill",
             cssProp: "fill",
-            dataAttr: "data-darkreader-inline-fill"
+            dataAttr: "data-darken-inline-fill"
         },
         "stroke": {
-            customProp: "--darkreader-inline-stroke",
+            customProp: "--darken-inline-stroke",
             cssProp: "stroke",
-            dataAttr: "data-darkreader-inline-stroke"
+            dataAttr: "data-darken-inline-stroke"
         },
         "outline-color": {
-            customProp: "--darkreader-inline-outline",
+            customProp: "--darken-inline-outline",
             cssProp: "outline-color",
-            dataAttr: "data-darkreader-inline-outline"
+            dataAttr: "data-darken-inline-outline"
         },
         "stop-color": {
-            customProp: "--darkreader-inline-stopcolor",
+            customProp: "--darken-inline-stopcolor",
             cssProp: "stop-color",
-            dataAttr: "data-darkreader-inline-stopcolor"
+            dataAttr: "data-darken-inline-stopcolor"
         }
     };
     const shorthandOverrides = {
         "background": {
-            customProp: "--darkreader-inline-bg",
+            customProp: "--darken-inline-bg",
             cssProp: "background",
-            dataAttr: "data-darkreader-inline-bg"
+            dataAttr: "data-darken-inline-bg"
         },
         "border": {
-            customProp: "--darkreader-inline-border-short",
+            customProp: "--darken-inline-border-short",
             cssProp: "border",
-            dataAttr: "data-darkreader-inline-border-short"
+            dataAttr: "data-darken-inline-border-short"
         },
         "border-bottom": {
-            customProp: "--darkreader-inline-border-bottom-short",
+            customProp: "--darken-inline-border-bottom-short",
             cssProp: "border-bottom",
-            dataAttr: "data-darkreader-inline-border-bottom-short"
+            dataAttr: "data-darken-inline-border-bottom-short"
         },
         "border-left": {
-            customProp: "--darkreader-inline-border-left-short",
+            customProp: "--darken-inline-border-left-short",
             cssProp: "border-left",
-            dataAttr: "data-darkreader-inline-border-left-short"
+            dataAttr: "data-darken-inline-border-left-short"
         },
         "border-right": {
-            customProp: "--darkreader-inline-border-right-short",
+            customProp: "--darken-inline-border-right-short",
             cssProp: "border-right",
-            dataAttr: "data-darkreader-inline-border-right-short"
+            dataAttr: "data-darken-inline-border-right-short"
         },
         "border-top": {
-            customProp: "--darkreader-inline-border-top-short",
+            customProp: "--darken-inline-border-top-short",
             cssProp: "border-top",
-            dataAttr: "data-darkreader-inline-border-top-short"
+            dataAttr: "data-darken-inline-border-top-short"
         }
     };
     const overridesList = Object.values(overrides);
@@ -5988,7 +5988,7 @@
                 ].join("\n");
             })
             .concat([
-                "[data-darkreader-inline-invert] {",
+                "[data-darken-inline-invert] {",
                 "    filter: invert(100%) hue-rotate(180deg);",
                 "}"
             ])
@@ -6288,7 +6288,7 @@
                     if (
                         value &&
                         targetCSSProp === "background" &&
-                        value.startsWith("var(--darkreader-bg--")
+                        value.startsWith("var(--darken-bg--")
                     ) {
                         setStaticValue(value);
                     }
@@ -6347,7 +6347,7 @@
                 const analyzeSVGAsImage = () => {
                     let svgString = svg.outerHTML;
                     svgString = svgString.replaceAll(
-                        '<style class="darkreader darkreader--sync" media="screen"></style>',
+                        '<style class="darken darken--sync" media="screen"></style>',
                         ""
                     );
                     const dataURL = `data:image/svg+xml;base64,${btoa(svgString)}`;
@@ -6359,12 +6359,12 @@
                                 !details.isTransparent)
                         ) {
                             svg.setAttribute(
-                                "data-darkreader-inline-invert",
+                                "data-darken-inline-invert",
                                 ""
                             );
                         } else {
                             svg.removeAttribute(
-                                "data-darkreader-inline-invert"
+                                "data-darken-inline-invert"
                             );
                         }
                     });
@@ -6601,7 +6601,7 @@
 
     let canUseSheetProxy = false;
     document.addEventListener(
-        "__darkreader__inlineScriptsAllowed",
+        "__darken__inlineScriptsAllowed",
         () => (canUseSheetProxy = true),
         {once: true}
     );
@@ -6645,13 +6645,13 @@
         }
         function watchForSheetChangesUsingProxy() {
             element.addEventListener(
-                "__darkreader__updateSheet",
+                "__darken__updateSheet",
                 onSheetChange
             );
         }
         function stopWatchingForSheetChangesUsingProxy() {
             element.removeEventListener(
-                "__darkreader__updateSheet",
+                "__darken__updateSheet",
                 onSheetChange
             );
         }
@@ -6750,7 +6750,7 @@
                     !element.disabled &&
                     !element.href.startsWith("moz-extension://") &&
                     !shouldIgnoreCSSURL(element.href))) &&
-            !element.classList.contains("darkreader") &&
+            !element.classList.contains("darken") &&
             !ignoredMedia.includes(element.media.toLowerCase()) &&
             !element.classList.contains("stylus")
         );
@@ -6797,14 +6797,14 @@
             let next = element;
             while (
                 (next = next.nextElementSibling) &&
-                next.matches(".darkreader")
+                next.matches(".darken")
             ) {
                 prevStyles.push(next);
             }
             syncStyle =
                 prevStyles.find(
                     (el) =>
-                        el.matches(".darkreader--sync") && !syncStyleSet.has(el)
+                        el.matches(".darken--sync") && !syncStyleSet.has(el)
                 ) || null;
         }
         let syncStylePositionWatcher = null;
@@ -6917,8 +6917,8 @@
                           "style"
                       )
                     : document.createElement("style");
-            syncStyle.classList.add("darkreader");
-            syncStyle.classList.add("darkreader--sync");
+            syncStyle.classList.add("darken");
+            syncStyle.classList.add("darken--sync");
             syncStyle.media = "screen";
             if (element.title) {
                 syncStyle.title = element.title;
@@ -7305,7 +7305,7 @@
         enableCustomElementRegistryProxy
     ) {
         document.dispatchEvent(
-            new CustomEvent("__darkreader__inlineScriptsAllowed")
+            new CustomEvent("__darken__inlineScriptsAllowed")
         );
         const cleaners = [];
         function cleanUp() {
@@ -7332,9 +7332,9 @@
             };
             disableWPDarkMode();
         }
-        documentEventListener("__darkreader__cleanUp", cleanUp);
+        documentEventListener("__darken__cleanUp", cleanUp);
         documentEventListener(
-            "__darkreader__disableConflictingPlugins",
+            "__darken__disableConflictingPlugins",
             disableConflictingPlugins
         );
         function overrideProperty(cls, prop, overrides) {
@@ -7363,14 +7363,14 @@
                     ? void 0
                     : element.classList) === null || _a === void 0
                 ? void 0
-                : _a.contains("darkreader");
+                : _a.contains("darken");
         }
         function isDRSheet(sheet) {
             return isDRElement(sheet.ownerNode);
         }
-        const updateSheetEvent = new CustomEvent("__darkreader__updateSheet");
+        const updateSheetEvent = new CustomEvent("__darken__updateSheet");
         const shadowDomAttachingEvent = new CustomEvent(
-            "__darkreader__shadowDomAttaching",
+            "__darken__shadowDomAttaching",
             {bubbles: true}
         );
         let onFFSheetChange;
@@ -7519,11 +7519,11 @@
         function resolveCustomElement(tag) {
             customElements.whenDefined(tag).then(() => {
                 document.dispatchEvent(
-                    new CustomEvent("__darkreader__isDefined", {detail: {tag}})
+                    new CustomEvent("__darken__isDefined", {detail: {tag}})
                 );
             });
         }
-        documentEventListener("__darkreader__addUndefinedResolver", (e) =>
+        documentEventListener("__darken__addUndefinedResolver", (e) =>
             resolveCustomElement(e.detail.tag)
         );
         if (enableCustomElementRegistryProxy) {
@@ -7541,7 +7541,7 @@
         function checkBlobURLSupport() {
             if (blobURLAllowed != null) {
                 document.dispatchEvent(
-                    new CustomEvent("__darkreader__blobURLCheckResponse", {
+                    new CustomEvent("__darken__blobURLCheckResponse", {
                         detail: {blobURLAllowed}
                     })
                 );
@@ -7568,13 +7568,13 @@
         }
         function sendBlobURLCheckResponse() {
             document.dispatchEvent(
-                new CustomEvent("__darkreader__blobURLCheckResponse", {
+                new CustomEvent("__darken__blobURLCheckResponse", {
                     detail: {blobURLAllowed}
                 })
             );
         }
         documentEventListener(
-            "__darkreader__blobURLCheckRequest",
+            "__darken__blobURLCheckRequest",
             checkBlobURLSupport
         );
         if (enableStyleSheetsProxy) {
@@ -7885,7 +7885,7 @@
             const sendSourceStyles = (sheets) => {
                 const data = {detail: {sheets}};
                 const event = new CustomEvent(
-                    "__darkreader__adoptedStyleSheetsChange",
+                    "__darken__adoptedStyleSheetsChange",
                     data
                 );
                 document.dispatchEvent(event);
@@ -7905,12 +7905,12 @@
                 }
             };
             documentEventListener(
-                "__darkreader__startAdoptedStyleSheetsWatcher",
+                "__darken__startAdoptedStyleSheetsWatcher",
                 () => {
                     proxyAdoptedStyleSheets();
                     proxyStyleDeclaration();
                     documentEventListener(
-                        "__darkreader__adoptedStyleSheetCommands",
+                        "__darken__adoptedStyleSheetCommands",
                         commandsListener
                     );
                     walkNodesWithAdoptedStyles(document, (node) =>
@@ -7979,14 +7979,14 @@
     }
     let canOptimizeUsingProxy = false;
     document.addEventListener(
-        "__darkreader__inlineScriptsAllowed",
+        "__darken__inlineScriptsAllowed",
         () => {
             canOptimizeUsingProxy = true;
         },
         {once: true, passive: true}
     );
     const unhandledShadowHosts = new Set();
-    document.addEventListener("__darkreader__shadowDomAttaching", (e) => {
+    document.addEventListener("__darken__shadowDomAttaching", (e) => {
         const host = e.target;
         if (unhandledShadowHosts.size === 0) {
             queueMicrotask(() => {
@@ -8030,7 +8030,7 @@
                     resolvers.set(tag, [resolve]);
                 }
                 document.dispatchEvent(
-                    new CustomEvent("__darkreader__addUndefinedResolver", {
+                    new CustomEvent("__darken__addUndefinedResolver", {
                         detail: {tag}
                     })
                 );
@@ -8058,7 +8058,7 @@
         elementsDefinitionCallback = null;
         undefinedGroups.clear();
         document.removeEventListener(
-            "__darkreader__isDefined",
+            "__darken__isDefined",
             handleIsDefined
         );
     }
@@ -8281,7 +8281,7 @@
             });
             hosts.forEach((node) => handledShadowHosts.add(node));
         });
-        document.addEventListener("__darkreader__isDefined", handleIsDefined);
+        document.addEventListener("__darken__isDefined", handleIsDefined);
         collectUndefinedElements(document);
         addDOMReadyListener(() => {
             forEach(document.body.children, (el) => {
@@ -8336,7 +8336,7 @@
             element = classMap.get(className);
         } else {
             element = document.createElement("style");
-            element.classList.add("darkreader");
+            element.classList.add("darken");
             element.classList.add(className);
             element.media = "screen";
             element.textContent = "";
@@ -8348,7 +8348,7 @@
         let element = root.querySelector(`.${className}`);
         if (!element) {
             element = document.createElement("script");
-            element.classList.add("darkreader");
+            element.classList.add("darken");
             element.classList.add(className);
         }
         return element;
@@ -8401,34 +8401,34 @@
     function createStaticStyleOverrides() {
         var _a, _b;
         const fallbackStyle = createOrUpdateStyle$1(
-            "darkreader--fallback",
+            "darken--fallback",
             document
         );
         fallbackStyle.textContent = getModifiedFallbackStyle(theme, {
             strict: true
         });
         injectStaticStyle(fallbackStyle, null, "fallback");
-        const userAgentStyle = createOrUpdateStyle$1("darkreader--user-agent");
+        const userAgentStyle = createOrUpdateStyle$1("darken--user-agent");
         userAgentStyle.textContent = getModifiedUserAgentStyle(
             theme,
             isIFrame,
             theme.styleSystemControls
         );
         injectStaticStyle(userAgentStyle, fallbackStyle, "user-agent");
-        const textStyle = createOrUpdateStyle$1("darkreader--text");
+        const textStyle = createOrUpdateStyle$1("darken--text");
         if (theme.useFont || theme.textStroke > 0) {
             textStyle.textContent = createTextStyle(theme);
         } else {
             textStyle.textContent = "";
         }
         injectStaticStyle(textStyle, userAgentStyle, "text");
-        const invertStyle = createOrUpdateStyle$1("darkreader--invert");
+        const invertStyle = createOrUpdateStyle$1("darken--invert");
         setInversionStyleValue(invertStyle);
         injectStaticStyle(invertStyle, textStyle, "invert");
-        const inlineStyle = createOrUpdateStyle$1("darkreader--inline");
+        const inlineStyle = createOrUpdateStyle$1("darken--inline");
         inlineStyle.textContent = getInlineOverrideStyle();
         injectStaticStyle(inlineStyle, invertStyle, "inline");
-        const variableStyle = createOrUpdateStyle$1("darkreader--variables");
+        const variableStyle = createOrUpdateStyle$1("darken--variables");
         const selectionColors = (
             theme === null || theme === void 0 ? void 0 : theme.selectionColor
         )
@@ -8444,17 +8444,17 @@
         );
         variableStyle.textContent = [
             `:root {`,
-            `   --darkreader-neutral-background: ${neutralBackgroundColor};`,
-            `   --darkreader-neutral-text: ${neutralTextColor};`,
-            `   --darkreader-selection-background: ${(_a = selectionColors === null || selectionColors === void 0 ? void 0 : selectionColors.backgroundColorSelection) !== null && _a !== void 0 ? _a : "initial"};`,
-            `   --darkreader-selection-text: ${(_b = selectionColors === null || selectionColors === void 0 ? void 0 : selectionColors.foregroundColorSelection) !== null && _b !== void 0 ? _b : "initial"};`,
+            `   --darken-neutral-background: ${neutralBackgroundColor};`,
+            `   --darken-neutral-text: ${neutralTextColor};`,
+            `   --darken-selection-background: ${(_a = selectionColors === null || selectionColors === void 0 ? void 0 : selectionColors.backgroundColorSelection) !== null && _a !== void 0 ? _a : "initial"};`,
+            `   --darken-selection-text: ${(_b = selectionColors === null || selectionColors === void 0 ? void 0 : selectionColors.foregroundColorSelection) !== null && _b !== void 0 ? _b : "initial"};`,
             `}`
         ].join("\n");
         injectStaticStyle(variableStyle, inlineStyle, "variables", () =>
             registerVariablesSheet(variableStyle.sheet)
         );
         registerVariablesSheet(variableStyle.sheet);
-        const rootVarsStyle = createOrUpdateStyle$1("darkreader--root-vars");
+        const rootVarsStyle = createOrUpdateStyle$1("darken--root-vars");
         injectStaticStyle(rootVarsStyle, variableStyle, "root-vars");
         const enableStyleSheetsProxy = !(
             fixes && fixes.disableStyleSheetsProxy
@@ -8462,33 +8462,33 @@
         const enableCustomElementRegistryProxy = !(
             fixes && fixes.disableCustomElementRegistryProxy
         );
-        document.dispatchEvent(new CustomEvent("__darkreader__cleanUp"));
+        document.dispatchEvent(new CustomEvent("__darken__cleanUp"));
         {
-            const proxyScript = createOrUpdateScript("darkreader--proxy");
+            const proxyScript = createOrUpdateScript("darken--proxy");
             proxyScript.append(
                 `(${injectProxy})(${enableStyleSheetsProxy}, ${enableCustomElementRegistryProxy})`
             );
             document.head.insertBefore(proxyScript, rootVarsStyle.nextSibling);
             proxyScript.remove();
         }
-        const overrideStyle = createOrUpdateStyle$1("darkreader--override");
+        const overrideStyle = createOrUpdateStyle$1("darken--override");
         overrideStyle.textContent =
             fixes && fixes.css ? replaceCSSTemplates(fixes.css) : "";
         injectStaticStyle(overrideStyle, document.head.lastChild, "override");
     }
     const shadowRootsWithOverrides = new Set();
     function createShadowStaticStyleOverridesInner(root) {
-        const inlineStyle = createOrUpdateStyle$1("darkreader--inline", root);
+        const inlineStyle = createOrUpdateStyle$1("darken--inline", root);
         inlineStyle.textContent = getInlineOverrideStyle();
         root.insertBefore(inlineStyle, root.firstChild);
         const overrideStyle = createOrUpdateStyle$1(
-            "darkreader--override",
+            "darken--override",
             root
         );
         overrideStyle.textContent =
             fixes && fixes.css ? replaceCSSTemplates(fixes.css) : "";
         root.insertBefore(overrideStyle, inlineStyle.nextSibling);
-        const invertStyle = createOrUpdateStyle$1("darkreader--invert", root);
+        const invertStyle = createOrUpdateStyle$1("darken--invert", root);
         setInversionStyleValue(invertStyle);
         root.insertBefore(invertStyle, overrideStyle.nextSibling);
         shadowRootsWithOverrides.add(root);
@@ -8502,9 +8502,9 @@
                         if (
                             nodeName === "STYLE" &&
                             [
-                                "darkreader darkreader--inline",
-                                "darkreader darkreader--override",
-                                "darkreader darkreader--invert"
+                                "darken darken--inline",
+                                "darken darken--override",
+                                "darken darken--invert"
                             ].includes(className)
                         ) {
                             createShadowStaticStyleOverridesInner(root);
@@ -8542,11 +8542,11 @@
         const fallback =
             ((_a = staticStyleMap.get(document.head)) === null || _a === void 0
                 ? void 0
-                : _a.get("darkreader--fallback")) ||
+                : _a.get("darken--fallback")) ||
             ((_b = staticStyleMap.get(document)) === null || _b === void 0
                 ? void 0
-                : _b.get("darkreader--fallback")) ||
-            document.querySelector(".darkreader--fallback");
+                : _b.get("darken--fallback")) ||
+            document.querySelector(".darken--fallback");
         if (fallback) {
             fallback.textContent = "";
         }
@@ -8566,11 +8566,11 @@
         variablesStore.matchVariablesAndDependents();
         variablesStore.setOnRootVariableChange(() => {
             const rootVarsStyle = createOrUpdateStyle$1(
-                "darkreader--root-vars"
+                "darken--root-vars"
             );
             variablesStore.putRootVars(rootVarsStyle, theme);
         });
-        const rootVarsStyle = createOrUpdateStyle$1("darkreader--root-vars");
+        const rootVarsStyle = createOrUpdateStyle$1("darken--root-vars");
         variablesStore.putRootVars(rootVarsStyle, theme);
         styleManagers.forEach((manager) =>
             manager.render(theme, ignoredImageAnalysisSelectors)
@@ -8629,7 +8629,7 @@
                     () => {
                         document.dispatchEvent(
                             new CustomEvent(
-                                "__darkreader__adoptedStyleSheetCommands",
+                                "__darken__adoptedStyleSheetCommands",
                                 {detail: JSON.stringify(response)}
                             )
                         );
@@ -8637,17 +8637,17 @@
                 );
             };
             document.addEventListener(
-                "__darkreader__adoptedStyleSheetsChange",
+                "__darken__adoptedStyleSheetsChange",
                 onAdoptedCssChange
             );
             cleaners.push(() =>
                 document.removeEventListener(
-                    "__darkreader__adoptedStyleSheetsChange",
+                    "__darken__adoptedStyleSheetsChange",
                     onAdoptedCssChange
                 )
             );
             document.dispatchEvent(
-                new CustomEvent("__darkreader__startAdoptedStyleSheetsWatcher")
+                new CustomEvent("__darken__startAdoptedStyleSheetsWatcher")
             );
         }
     }
@@ -8662,7 +8662,7 @@
                     `Current amount of styles loading: ${loadingStyles.size}`
                 );
                 const fallbackStyle = createOrUpdateStyle$1(
-                    "darkreader--fallback"
+                    "darken--fallback"
                 );
                 if (!fallbackStyle.textContent) {
                     fallbackStyle.textContent = getModifiedFallbackStyle(
@@ -8805,7 +8805,7 @@
                     if (styleAttr.includes("--")) {
                         variablesStore.matchVariablesAndDependents();
                         const rootVarsStyle = createOrUpdateStyle$1(
-                            "darkreader--root-vars"
+                            "darken--root-vars"
                         );
                         variablesStore.putRootVars(rootVarsStyle, theme);
                     }
@@ -8842,31 +8842,31 @@
     let headObserver = null;
     function addMetaListener() {
         metaObserver = new MutationObserver(() => {
-            if (document.querySelector('meta[name="darkreader-lock"]')) {
+            if (document.querySelector('meta[name="darken-lock"]')) {
                 metaObserver.disconnect();
                 removeDynamicTheme();
             }
         });
         metaObserver.observe(document.head, {childList: true, subtree: true});
     }
-    function createDarkReaderInstanceMarker() {
+    function createdarkenInstanceMarker() {
         const metaElement = document.createElement("meta");
-        metaElement.name = "darkreader";
+        metaElement.name = "darken";
         metaElement.content = INSTANCE_ID;
         document.head.appendChild(metaElement);
     }
     function isDRLocked() {
-        return document.querySelector('meta[name="darkreader-lock"]') != null;
+        return document.querySelector('meta[name="darken-lock"]') != null;
     }
-    function isAnotherDarkReaderInstanceActive() {
-        const meta = document.querySelector('meta[name="darkreader"]');
+    function isAnotherdarkenInstanceActive() {
+        const meta = document.querySelector('meta[name="darken"]');
         if (meta) {
             if (meta.content !== INSTANCE_ID) {
                 return true;
             }
             return false;
         }
-        createDarkReaderInstanceMarker();
+        createdarkenInstanceMarker();
         addMetaListener();
         return false;
     }
@@ -8876,12 +8876,12 @@
             failure();
             return;
         }
-        const oldMeta = document.head.querySelector('meta[name="darkreader"]');
+        const oldMeta = document.head.querySelector('meta[name="darken"]');
         if (!oldMeta || oldMeta.content === INSTANCE_ID) {
             return;
         }
         const lock = document.createElement("meta");
-        lock.name = "darkreader-lock";
+        lock.name = "darken-lock";
         document.head.append(lock);
         queueMicrotask(() => {
             lock.remove();
@@ -8892,7 +8892,7 @@
         if (document.documentElement.hasAttribute("data-wp-dark-mode-preset")) {
             const disableWPDarkMode = () => {
                 document.dispatchEvent(
-                    new CustomEvent("__darkreader__disableConflictingPlugins")
+                    new CustomEvent("__darken__disableConflictingPlugins")
                 );
                 document.documentElement.classList.remove(
                     "wp-dark-mode-active"
@@ -9048,11 +9048,11 @@
             const success = () => {
                 disableConflictingPlugins();
                 document.documentElement.setAttribute(
-                    "data-darkreader-mode",
+                    "data-darken-mode",
                     "dynamic"
                 );
                 document.documentElement.setAttribute(
-                    "data-darkreader-scheme",
+                    "data-darken-scheme",
                     theme.mode ? "dark" : "dimmed"
                 );
                 createThemeAndWatchForUpdates();
@@ -9061,8 +9061,8 @@
                 removeDynamicTheme();
             };
             if (isDRLocked()) {
-                removeNode(document.querySelector(".darkreader--fallback"));
-            } else if (isAnotherDarkReaderInstanceActive()) {
+                removeNode(document.querySelector(".darken--fallback"));
+            } else if (isAnotherdarkenInstanceActive()) {
                 interceptOldScript({
                     success,
                     failure
@@ -9097,8 +9097,8 @@
         prevFixes = fixes;
     }
     function removeProxy() {
-        document.dispatchEvent(new CustomEvent("__darkreader__cleanUp"));
-        removeNode(document.head.querySelector(".darkreader--proxy"));
+        document.dispatchEvent(new CustomEvent("__darken__cleanUp"));
+        removeNode(document.head.querySelector(".darken--proxy"));
     }
     const cleaners = [];
     let pipListenerRegistered = false;
@@ -9126,12 +9126,12 @@
             return fontSheetRules.join("\n");
         }
         function injectFontCSS(pipDoc, fontCSS) {
-            if (pipDoc.querySelector(".darkreader--font-fix")) {
+            if (pipDoc.querySelector(".darken--font-fix")) {
                 return;
             }
             const style = pipDoc.createElement("style");
-            style.classList.add("darkreader");
-            style.classList.add("darkreader--font-fix");
+            style.classList.add("darken");
+            style.classList.add("darken--font-fix");
             style.textContent = fontCSS;
             (pipDoc.head || pipDoc.documentElement).appendChild(style);
         }
@@ -9159,20 +9159,20 @@
         });
     }
     function removeDynamicTheme() {
-        document.documentElement.removeAttribute(`data-darkreader-mode`);
-        document.documentElement.removeAttribute(`data-darkreader-scheme`);
+        document.documentElement.removeAttribute(`data-darken-mode`);
+        document.documentElement.removeAttribute(`data-darken-scheme`);
         cleanDynamicThemeCache();
-        removeNode(document.querySelector(".darkreader--fallback"));
+        removeNode(document.querySelector(".darken--fallback"));
         if (document.head) {
             const selectors = [
-                ".darkreader--user-agent",
-                ".darkreader--text",
-                ".darkreader--invert",
-                ".darkreader--inline",
-                ".darkreader--override",
-                ".darkreader--variables",
-                ".darkreader--root-vars",
-                'meta[name="darkreader"]'
+                ".darken--user-agent",
+                ".darken--text",
+                ".darken--invert",
+                ".darken--inline",
+                ".darken--override",
+                ".darken--variables",
+                ".darken--root-vars",
+                'meta[name="darken"]'
             ];
             restoreMetaThemeColor();
             selectors.forEach((selector) =>
@@ -9182,14 +9182,14 @@
             removeProxy();
         }
         shadowRootsWithOverrides.forEach((root) => {
-            removeNode(root.querySelector(".darkreader--inline"));
-            removeNode(root.querySelector(".darkreader--override"));
+            removeNode(root.querySelector(".darken--inline"));
+            removeNode(root.querySelector(".darken--override"));
         });
         shadowRootsWithOverrides.clear();
         forEach(styleManagers.keys(), (el) => removeManager(el));
         loadingStyles.clear();
         cleanLoadingLinks();
-        forEach(document.querySelectorAll(".darkreader"), removeNode);
+        forEach(document.querySelectorAll(".darken"), removeNode);
         removeStyleContainer();
         adoptedStyleManagers.forEach((manager) => manager.destroy());
         adoptedStyleManagers.splice(0);
@@ -9448,10 +9448,10 @@ _______|_______/__/ ____ \\__\\__|___\\__\\__|___\\__\\____
 |  |__/  /|  ____/  /__\\  \\ |  |   )  |  ____|  |__/  /
 |  ____  \\|  |__/  ______  \\|  |__/  /|  |___|  ____  \\
 |__|   \\__\\____/__/      \\__\\_______/ |______|__|   \\__\\
-                https://darkreader.org
+                https://darken.org
 */
 
-/*! Dark reader generated CSS | Licensed under MIT https://github.com/darkreader/darkreader/blob/main/LICENSE */
+/*! darken generated CSS | Licensed under MIT https://github.com/darken/darken/blob/main/LICENSE */
 `;
     async function collectCSS() {
         const css = [banner];
@@ -9463,13 +9463,13 @@ _______|_______/__/ ____ \\__\\__|___\\__\\__|___\\__\\____
                 css.push("");
             }
         }
-        addStaticCSS(".darkreader--fallback", "Fallback Style");
-        addStaticCSS(".darkreader--user-agent", "User-Agent Style");
-        addStaticCSS(".darkreader--text", "Text Style");
-        addStaticCSS(".darkreader--invert", "Invert Style");
-        addStaticCSS(".darkreader--variables", "Variables Style");
+        addStaticCSS(".darken--fallback", "Fallback Style");
+        addStaticCSS(".darken--user-agent", "User-Agent Style");
+        addStaticCSS(".darken--text", "Text Style");
+        addStaticCSS(".darken--invert", "Invert Style");
+        addStaticCSS(".darken--variables", "Variables Style");
         const modifiedCSS = [];
-        document.querySelectorAll(".darkreader--sync").forEach((element) => {
+        document.querySelectorAll(".darken--sync").forEach((element) => {
             forEach(element.sheet.cssRules, (rule) => {
                 rule && rule.cssText && modifiedCSS.push(rule.cssText);
             });
@@ -9480,7 +9480,7 @@ _______|_______/__/ ____ \\__\\__|___\\__\\__|___\\__\\____
             css.push(await replaceBlobs(formattedCSS));
             css.push("");
         }
-        addStaticCSS(".darkreader--override", "Override Style");
+        addStaticCSS(".darken--override", "Override Style");
         return css.join("\n");
     }
 
@@ -9489,12 +9489,12 @@ _______|_______/__/ ____ \\__\\__|___\\__\\__|___\\__\\____
             selectNode: () => document.getElementById("dark-reader-style"),
             createNode: (target) => {
                 document.documentElement.setAttribute(
-                    "data-darkreader-mode",
+                    "data-darken-mode",
                     type
                 );
                 const style = document.createElement("style");
                 style.id = "dark-reader-style";
-                style.classList.add("darkreader");
+                style.classList.add("darken");
                 style.type = "text/css";
                 style.textContent = css;
                 target.appendChild(style);
@@ -9522,7 +9522,7 @@ _______|_______/__/ ____ \\__\\__|___\\__\\__|___\\__\\____
     }
     function removeStyle() {
         removeNode(document.getElementById("dark-reader-style"));
-        document.documentElement.removeAttribute("data-darkreader-mode");
+        document.documentElement.removeAttribute("data-darken-mode");
     }
 
     function createOrUpdateSVGFilter(svgMatrix, svgReverseMatrix) {
@@ -9628,12 +9628,12 @@ _______|_______/__/ ____ \\__\\__|___\\__\\__|___\\__\\____
         } catch (error) {
             if (error.message === "Extension context invalidated.") {
                 console.log(
-                    "Dark Reader: instance of old CS detected, cleaning up."
+                    "darken: instance of old CS detected, cleaning up."
                 );
                 cleanup();
             } else {
                 console.log(
-                    "Dark Reader: unexpected error during message passing."
+                    "darken: unexpected error during message passing."
                 );
             }
         }
