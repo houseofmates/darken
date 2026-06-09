@@ -1,7 +1,7 @@
 // auto-update: checks original repo for new releases
-// original: https://github.com/darkreader/darkreader
+// original: https://github.com/darken/darken
 (function() {
-  const REPO = "darkreader/darkreader";
+  const REPO = "darken/darken";
   const CHECK_INTERVAL = 6 * 60 * 60 * 1000;
   const STORAGE_KEY = "fork_update_check";
 
